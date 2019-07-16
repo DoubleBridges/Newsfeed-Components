@@ -85,6 +85,46 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Temporal Research',
+    date: 'Jul 3rd, 1985',
+    firstParagraph: `Well, they're your parents, you must know them. What are their common interests, what do they like to do
+          together?
+          You know Marty, I'm gonna be very sad to see you go. You've really mad a difference in my life, you've given me
+          something to shoot for.
+          Just knowing, that I'm gonna be around to se 1985, that I'm gonna succeed in this. That I'm gonna have a chance
+          to travel through time.
+          It's going to be really hard waiting 30 years before I could talk to you about everything that's happened in the
+          past few days.
+          I'm really gonna miss you, Marty. Precisely. What? Not a word, not a word, not a word now.
+          Quiet, uh, donations, you want me to make a donation to the coast guard youth auxiliary?`,
+
+    secondParagraph: `My god, they found me. I don't know how but they found me. Run for it, Marty. My god, they found me. I don't
+        know how but they found me.
+        Run for it, Marty. Calm down, Marty, I didn't disintegrate anything. The molecular structure of Einstein and the
+        car are completely intact.
+        Pretty Mediocre photographic fakery, they cut off your brother's hair. Marty, I'm sorry, but the only power
+        source capable of generating one
+        point twenty-one gigawatts of electricity is a bolt of lightning. Precisely.`,
+
+    thirdParagraph: `I'm sure that in 1985, plutonium is available at every corner drug store, but in 1955, it's a little hard to
+    come by.
+    Marty, I'm sorry, but I'm afraid you're stuck here. Good evening, I'm Doctor Emmett Brown. I'm standing on the
+    parking lot of Twin Pines Mall.
+    It's Saturday morning, October 26, 1985, 1:18 a.m. and this is temporal experiment number one. C'mon, Einy, hey
+    hey boy, get in there, that a
+    boy, in you go, get down, that's it. Marty, is that you? No, Marty, we've already agreed that having information
+    about the future could be
+    extremely dangerous. Even if your intentions are good, they could backfire drastically. Whatever you've got to
+    tell me I'll find out through
+    the natural course of time. You know Marty, I'm gonna be very sad to see you go. You've really mad a difference
+    in my life, you've given me
+    something to shoot for. Just knowing, that I'm gonna be around to se 1985, that I'm gonna succeed in this. That
+    I'm gonna have a chance to
+    travel through time. It's going to be really hard waiting 30 years before I could talk to you about everything
+    that's happened in the past
+    few days. I'm really gonna miss you, Marty.`
   }
 ];
 
@@ -112,3 +152,43 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+const articleSection = document.querySelector('.articles');
+
+data.forEach(object => {
+  ArticleComponent(object);
+  let article = ArticleComponent(object)
+  articleSection.appendChild(article)
+})
+
+function ArticleComponent(object) {
+  const article = document.createElement('article');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(expandButton);
+
+  article.classList.add('article')
+  date.classList.add('date')
+  expandButton.classList.add('expand-button')
+
+  title.textContent = object.title
+  date.textContent = object.date
+  p1.textContent = object.firstParagraph
+  p2.textContent = object.secondParagraph
+  p3.textContent = object.thirdParagraph
+  expandButton.textContent = "Expand"
+
+  expandButton.addEventListener('click', () => article.classList.toggle('article-open'))
+
+  return article;
+}
+
