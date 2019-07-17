@@ -1,3 +1,5 @@
+
+
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
 const data = [
@@ -168,13 +170,15 @@ function ArticleComponent(object) {
   const p2 = document.createElement('p');
   const p3 = document.createElement('p');
   const expandButton = document.createElement('span');
+  const markAsReadButton = document.createElement('span');
 
-  article.appendChild(title);
-  article.appendChild(date);
-  article.appendChild(p1);
-  article.appendChild(p2);
-  article.appendChild(p3);
-  article.appendChild(expandButton);
+  article.appendChild(title)
+  article.appendChild(date)
+  article.appendChild(p1)
+  article.appendChild(p2)
+  article.appendChild(p3)
+  article.appendChild(expandButton)
+  article.appendChild(markAsReadButton)
 
   article.classList.add('article')
   date.classList.add('date')
@@ -185,9 +189,22 @@ function ArticleComponent(object) {
   p1.textContent = object.firstParagraph
   p2.textContent = object.secondParagraph
   p3.textContent = object.thirdParagraph
-  expandButton.textContent = "Expand"
+  expandButton.textContent = "Click to Expand"
+  markAsReadButton.textContent = "Mark As Read"
+  markAsReadButton.setAttribute('style', 'border: 1px solid black; margin-top:20px; padding: 5px; cursor: pointer')
 
-  expandButton.addEventListener('click', () => article.classList.toggle('article-open'))
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+    if (expandButton.textContent === "Click to Expand") {
+      expandButton.textContent = "Click to Close"
+      Tween
+    } else {
+      expandButton.textContent = "Click to Expand"
+    }
+  },
+
+  markAsReadButton.addEventListener('click', () => article.setAttribute('style', 'display:none'))
+  )
 
   return article;
 }

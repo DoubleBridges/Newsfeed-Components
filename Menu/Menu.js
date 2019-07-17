@@ -55,8 +55,19 @@ function MenuComponent(arr) {
     navItems.appendChild(listItem)
   })
 
-  menuButton.addEventListener('click', () => menu.classList.toggle('menu--open'))
+  menuButton.addEventListener('click', () => {
+    
+    if(menu.hasAttribute('menu--open')) {
+      setTimeout(() => menu.classList.toggle('menu--open'), 1000);
+      TweenMax.to(menu, 0.5, {opacity:0})
+    } else {
+      menu.classList.toggle('menu--open')
+      TweenMax.from(menu, 0.5, {opacity:0})
+    }
+    
+  })
 
   return menu
 
 }
+
